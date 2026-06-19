@@ -17,7 +17,7 @@ relative to the spatial step (the CFL stability condition).
 import numpy as np
 
 
-def explicit_fd_european(S: float, K: float, r: float, sigma: float, T: float, M: int, N: int, S_max: float, option_type: str) -> float:
+def explicit_fd_european(S: float, K: float, r: float, sigma: float, T: float, M: int, N: int, S_max: float, option_type: str, return_grid: bool = False) -> float:
     """
     Explicit finite difference method for solving the Black-Scholes PDE.
 
@@ -90,4 +90,6 @@ def explicit_fd_european(S: float, K: float, r: float, sigma: float, T: float, M
     # grid is full now. read off today's column (column 0) at the actual spot S.
     # S probably isn't exactly on a grid line so interpolate between neighbours
     price = np.interp(S, S_values, grid[:, 0])
+    if return_grid:
+        return float(price), S_values, grid[:, 0]
     return float(price)
