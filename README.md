@@ -63,12 +63,13 @@ option-pricing-lab/
 │       ├── analytic.py        # Black-Scholes closed form
 │       ├── lattice.py         # CRR binomial tree (European + American)
 │       ├── montecarlo.py      # Monte Carlo via GBM
-│       └── pde.py             # explicit finite-difference solver
+│       ├── pde.py             # explicit finite-difference solver
+│       └── utils.py           # shared helpers
 ├── scripts/
 │   ├── convergence_binomial.py
 │   ├── convergence_montecarlo.py
-│   ├── pde_stability.py
-│   └── pde_convergence.py
+│   ├── convergence_pde.py
+│   └── stability_pde.py
 ├── tests/
 │   ├── test_analytic.py
 │   └── test_numerical.py
@@ -109,8 +110,8 @@ Regenerate the figures:
 ```bash
 python scripts/convergence_binomial.py
 python scripts/convergence_montecarlo.py
-python scripts/pde_stability.py
-python scripts/pde_convergence.py
+python scripts/stability_pde.py
+python scripts/convergence_pde.py
 ```
 
 ## Limitations and further work
