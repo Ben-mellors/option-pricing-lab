@@ -63,8 +63,8 @@ option-pricing-lab/
 │       ├── analytic.py        # Black-Scholes closed form
 │       ├── lattice.py         # CRR binomial tree (European + American)
 │       ├── montecarlo.py      # Monte Carlo via GBM
-│       ├── pde.py             # explicit finite-difference solver
-│       └── utils.py           # shared helpers
+│       └── pde.py             # explicit finite-difference solver
+│       
 ├── scripts/
 │   ├── convergence_binomial.py
 │   ├── convergence_montecarlo.py
