@@ -50,7 +50,7 @@ def explicit_fd_european(S: float, K: float, r: float, sigma: float, T: float, M
     # start it as all zeros and fill it in
     grid = np.zeros((M + 1, N + 1))
 
-    # expiry is the last column - here the option is just worth its payoff.
+    # expiry is the last column - here the optio n is just worth its payoff.
     # this is what we step backwards from
     if option_type == "call":
         grid[:, -1] = np.maximum(S_values - K, 0)   # [:, -1] = every row, last column
