@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 from pricinglab.analytic import bs_call
-from pricinglab.lattice import crr_european
+from pricinglab.lattice import crr_european , crr_american
 from pricinglab.montecarlo import mc_european
 from pricinglab.pde import explicit_fd_european
 
@@ -37,3 +37,21 @@ def test_pde_matches_black_scholes():
     bs_price = bs_call(S, K, r, sigma, T)
 
     assert pde_price == pytest.approx(bs_price, abs=0.05)
+
+def test_american_call_equals_european_no_dividends():
+    """No dividends => early exercise of a call is never optimal,
+    so American and European prices should be identical."""
+    params = dict(S=100, K=100, r=0.05, sigma=0.2, T=1, N=500, option_type="call")
+    euro = crr_european(**params)
+    amer = crr_american(**params)
+    assert amer == pytest.approx(euro, abs=1e-8)
+
+
+def test_american_put_exceeds_european():
+    """Early exercise can be optimal for a put, so American >= European,
+    strictly so when deep in the money."""
+    params = dict(S=80, K=100, r=0.05, sigma=0.2, T=1, N=500, option_type="put")
+    euro = crr_european(**params)
+    amer = crr_american(**params)
+    assert amer >= euro
+    assert amer > euro  # strict for this deep ITM case
