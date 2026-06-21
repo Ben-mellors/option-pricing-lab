@@ -41,7 +41,8 @@ Two results from the finite-difference solver stand out:
   number of time steps exceeds roughly σ²M²T - about 1600 for M = 200. The
   stable run above (N = 2000) gives 10.4550. Drop N below the threshold and the
   central coefficient `b = 1 − Δt(σ²i² + r)` turns negative; the scheme then
-  amplifies error at every step and the price diverges to around −3.1×10⁵³
+  amplifies error at every step and the price diverges to a magnitude of
+  around 10¹³⁸, oscillating between large positive and negative values,
   within 100 time steps. (`results/figures/pde_stability.png`)
 - **Convergence is second order.** With the stability condition met, the error
   against the exact price falls as roughly 1/M² - halving the space step
